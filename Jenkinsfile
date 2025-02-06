@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             when {
                 branch 'main'
-				expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+		expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             }
             steps {
                 script {
