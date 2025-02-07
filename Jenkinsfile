@@ -30,15 +30,10 @@ pipeline {
 
         stage('Deploy') {
             when {
-                branch 'main'
-		expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             }
             steps {
-                script {
-                    sh '''
-                    nohup python app.py > flask.log 2>&1 &
-                    '''
-                }
+                sh 'nohup python3 app.py > flask.log 2>&1 &'
             }
         }
     }
