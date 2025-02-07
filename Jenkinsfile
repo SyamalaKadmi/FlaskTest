@@ -5,6 +5,10 @@ pipeline {
         VENV_PATH = "${WORKSPACE}"
     }
 
+    triggers {
+        pollSCM('H/5 * * * *')  // Checks for changes every 5 minutes
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
