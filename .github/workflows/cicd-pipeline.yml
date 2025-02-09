@@ -37,11 +37,11 @@ jobs:
       - name: SSH into EC2 and Deploy to Staging
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.EC2_HOST_Staging }}
-          username: ${{ secrets.EC2_USER_Staging }}
-          key: ${{ secrets.EC2_SSH_PRIVATE_KEY_Staging }}
+          host: ${{ secrets.EC2_HOST_STAGING }}
+          username: ${{ secrets.EC2_USER_STAGING }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY_STAGING }}
           script: |
-            cd ${{ secrets.EC2_PATH }}
+            cd ${{ secrets.EC2_PATH_STAGING }}
             git pull origin staging
             pip install -r requirements.txt
             pkill -f app.py || true
@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.EC2_USER_PROD }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY_PROD }}
           script: |
-            cd ${{ secrets.EC2_PATH }}
+            cd ${{ secrets.EC2_PATH_PROD }}
             git pull origin main
             pip install -r requirements.txt
             pkill -f app.py || true
