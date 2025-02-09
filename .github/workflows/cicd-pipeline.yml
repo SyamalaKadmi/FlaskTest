@@ -41,10 +41,9 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY_STAGING }}
           script: |
-            cd ${{ secrets.EC2_PATH }}
+            cd FlaskTest
             git pull origin staging
             pip install -r requirements.txt
-            pkill -f app.py || true
             nohup python3 app.py > app.log 2>&1 &
 
   deploy-production:
@@ -60,8 +59,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY_PROD }}
           script: |
-            cd ${{ secrets.EC2_PATH }}
+            cd FlaskTest
             git pull origin main
             pip install -r requirements.txt
-            pkill -f app.py || true
             nohup python3 app.py > app.log 2>&1 &
